@@ -1,5 +1,6 @@
 import cv2
 import datetime
+from OCR import read_license_plate
 
 # Function to grab the license plate picture
 def capture_plate(video_path):
