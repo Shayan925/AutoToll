@@ -52,8 +52,8 @@ def capture_plate(video_path):
                     
                     # Matches license plate to owner
                     for i in range(len(df)):
-                        if df.iloc[i]['License Plate'] == license[-1][0]:
-                            df.loc[i, 'Most Recent Date'] = str(license[-1][1])
+                        if df.iloc[i]['License Plate'] == licenses[-1][0]:
+                            df.loc[i, 'Most Recent Date'] = str(licenses[-1][1])
                             if (df.iloc[i]['Owner'] not in names):
                                 print(f"Charging {df.iloc[i]['Owner']}...")
                                 names.append(df.iloc[i]['Owner'])
