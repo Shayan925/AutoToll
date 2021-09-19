@@ -36,9 +36,3 @@ def read_license_plate(img, date):
         texts[i] = texts[i].replace('-', '')
     
     return [texts[0], date]
-
-
-# Go though every license plate image
-for i in range (1, 14):
-    plateNumber = read_license_plate("Resources/Images/" + str(i) + ".jpg")
-    print (plateNumber)
