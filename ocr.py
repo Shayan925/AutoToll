@@ -1,5 +1,6 @@
 import io
 import os
+import datetime
 from google.cloud import vision # Imports the Google Cloud client library
 
 # Authentication
@@ -9,7 +10,7 @@ os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r'VisionAPI_Service_Account.json'
 client = vision.ImageAnnotatorClient()
 
 
-def read_license_plate(img):
+def read_license_plate(img, date):
     # Loads the image into memory
     with io.open(img, 'rb') as image_file:
         content = image_file.read()
@@ -34,7 +35,7 @@ def read_license_plate(img):
         texts[i] = texts[i].replace(' ', '')
         texts[i] = texts[i].replace('-', '')
     
-    return texts[0]
+    return [texts[0], date]
 
 
 # Go though every license plate image
