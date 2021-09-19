@@ -1,10 +1,12 @@
 import cv2
 import datetime
+import pandas as pd
 from OCR import read_license_plate
 
 # Function to grab the license plate picture
 def capture_plate(video_path):
     cap = cv2.VideoCapture(video_path)
+    df = pd.read_csv("lookup_table.csv")
 
     # Detects moving objects from stationary camera
     detect_objects = cv2.createBackgroundSubtractorMOG2(history=100, varThreshold=40)
@@ -46,6 +48,12 @@ def capture_plate(video_path):
 
                     # Function that uses machine learning to read the license plate
                     licenses.append(read_license_plate(f"Resources/Images/{cars}.jpg", datetime.datetime.now()))
+                    
+                    # Matches license plate to owner
+                    for i in range(len(df)):
+                        if df.iloc[i]['License Plate'] == license[-1][0]:
+                            df.loc[i, 'Most Recent Date'] = str(license[-1][1])
+                            print(f"Charging {df.iloc[i]['Owner']}...")
                 
                 
         #cv2.imshow("Right Side of Highway", right_side)
@@ -65,4 +73,5 @@ def capture_plate(video_path):
     cap.release()
     cv2.destroyAllWindows()
 
-    return licenses
+    # Saves the time to the csv
+    df.to_csv("lookup_table.csv", index=False)
