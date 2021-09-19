@@ -18,5 +18,5 @@ Our group does not possess a camera that can take high quality pictures of the l
 Learned how to interact with Google's vision API as it was our first time using it. Also, tracking moving objects using computer vision is more difficult than we initially thought.
 
 ## What's next for Automatic Tolling
--Implement Google's object detection API alongside a camera hung above the highway to gather more accurate results. 
--And use a larger database and host it in the cloud.
+- Implement Google's object detection API alongside a camera hung above the highway to gather more accurate results. 
+- And use a larger database and host it in the cloud.
